@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRedisRepository userRepository;
-    private static final String HASH_KEY = "Users";
-
 
     @Autowired
     public UserService(UserRedisRepository userRepository) {
@@ -22,6 +20,11 @@ public class UserService {
     }
 
     public User findByHashKey(String id) {
+        System.out.println("called findByHashKey");
         return userRepository.findById(id).orElseThrow();
+    }
+
+    public void deleteById(String id) {
+        userRepository.deleteById(id);
     }
 }
